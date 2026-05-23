@@ -1,38 +1,39 @@
 ---
-title: Hello World
+title: 关于这个笔记站
+date: 2026-05-23 00:00:00
+tags:
+  - Notes
+  - Blog
+categories:
+  - 随笔
+description: 介绍这个笔记站的用途、技术栈和内容规划。
+toc: false
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
+这个站用于记录我在 AIOps、Agent、Go 后端、RAG 和 AI Coding 方向的学习与实践。
 
-### Create a new post
+## 技术栈
 
-``` bash
-$ hexo new "My New Post"
+- **框架**: Hexo
+- **主题**: Butterfly
+- **部署**: GitHub Pages + GitHub Actions
+- **写作**: Markdown
+
+## 内容方向
+
+- 论文阅读笔记
+- 工程实践和踩坑记录
+- 工具链和开发流程整理
+- 阶段性思考和总结
+
+## 如何使用
+
+文章通过 Markdown 编写，放在 `source/_posts/` 目录下。推送到 `main` 分支后，GitHub Actions 会自动构建并部署。
+
+本地预览：
+
+```bash
+npm run dev
 ```
 
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+更多说明见项目 [README](https://github.com/ZhangJYe/ZhangJYe.github.io)。

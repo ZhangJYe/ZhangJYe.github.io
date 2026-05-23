@@ -26,10 +26,12 @@ index_layout: both
 description:
   enable: true
   typed:
-    - AIOps & Agent 研究
-    - Go 后端开发
-    - 智能运维 & AI Coding
-    - RAG 与工程化 Agent
+    - SDD / Spec-Driven Development
+    - Agent Engineering
+    - AIOps / 智能运维
+    - Go Backend
+    - Research Notes
+    - AI Coding
 
 # ---------------------
 # Page layout
@@ -40,13 +42,13 @@ disable_top_img: true
 # Avatar
 # ---------------------
 avatar:
-  img: /images/avatar.png
+  img: /images/avatar.svg
   effect: true
 
 # ---------------------
 # Site icon
 # ---------------------
-favicon: /images/favicon.png
+favicon: /images/favicon.svg
 
 # ---------------------
 # Sidebar
@@ -63,7 +65,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: 武汉大学研究生 | AIOps + Agent
+    description: 武汉大学研究生｜AIOps + Agent｜Go Backend
     button:
       enable: true
       icon: fab fa-github
@@ -71,7 +73,9 @@ aside:
       link: https://github.com/ZhangJYe
   card_announcement:
     enable: true
-    content: 欢迎来到 Fire 的个人笔记站点，记录 AIOps、Agent、Go 后端等方向的学习与实践。
+    content: >
+      这里记录我在 AIOps、Agent、Go 后端、RAG 和 AI Coding 方向的学习笔记与工程实践。
+      文章以技术总结和论文阅读为主，不定期更新。
   card_recent_post:
     enable: true
     limit: 5
