@@ -5,6 +5,12 @@
 # Navigation
 # ---------------------
 nav:
+  logo: /images/avatar.png
+  display_title: true
+  display_post_title: true
+  fixed: true
+
+menu:
   首页: / || fas fa-home
   归档: /archives/ || fas fa-archive
   分类: /categories/ || fas fa-folder-open
@@ -20,13 +26,21 @@ social:
 # ---------------------
 # Index (Homepage)
 # ---------------------
-index_layout: both
+index_layout: 4
+index_top_img_height: 480px
+index_site_info_top: 52%
 
 # Typing effect on homepage
-description:
+subtitle:
   enable: true
-  typed:
-    - SDD / Spec-Driven Development
+  effect: true
+  typed_option:
+    typeSpeed: 55
+    backSpeed: 28
+    backDelay: 1800
+    loop: true
+  source: false
+  sub:
     - Agent Engineering
     - AIOps / 智能运维
     - Go Backend
@@ -36,14 +50,18 @@ description:
 # ---------------------
 # Page layout
 # ---------------------
-disable_top_img: true
+disable_top_img: false
+default_top_img: false
+index_img: /images/bg.jpg
+footer_img: false
+background: '#f6f2ea'
 
 # ---------------------
 # Avatar
 # ---------------------
 avatar:
-  img: /images/avatar.svg
-  effect: true
+  img: /images/avatar.png
+  effect: false
 
 # ---------------------
 # Site icon
