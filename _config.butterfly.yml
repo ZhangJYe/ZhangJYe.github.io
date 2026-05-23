@@ -1,0 +1,89 @@
+# Butterfly Theme Configuration
+# Docs: https://butterfly.js.org/
+
+# Navigation menu
+nav:
+  Home: /
+  Archives: /archives
+  Categories: /categories
+  Tags: /tags
+  About: /about
+
+# Social links (placeholder)
+social:
+  # fab fa-github: https://github.com/yourusername||Github
+
+# Code blocks
+highlight_theme: mac
+highlight_copy: true
+highlight_lang: true
+highlight_height_limit: 300
+
+# Read mode
+readmode: true
+
+# Dark mode
+darkmode:
+  enable: true
+  button: true
+
+# Sidebar
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: true
+
+# Article meta
+post_meta:
+  page:
+    date_type: created
+    date_format: date
+    categories: true
+    tags: true
+    label: true
+  post:
+    date_type: both
+    date_format: relative
+    categories: true
+    tags: true
+    label: true
+
+# Footer
+footer:
+  owner:
+    enable: true
+    since: 2026
+  custom_text:
+  copyright: true
+
+# Creative Commons license
+creative_commons:
+  post: true
+  language: zh-CN
+  license: by-nc-sa
+
+# Page default cover (optional)
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  position: both
+  default_cover:
+
+# Avatar (optional)
+avatar:
+  img: /images/avatar.png
+  effect: false
+
+# Site icon
+favicon: /images/favicon.png
+
+# Disable tag plugin (use standard Markdown)
+tag_plugins:
+  enable: true
