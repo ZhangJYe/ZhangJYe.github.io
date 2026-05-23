@@ -6,7 +6,7 @@ tags:
   - Agent
   - Prompt
 categories:
-  - AI工程
+  - AI Engineering
 ---
 
 ## 概述

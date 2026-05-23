@@ -2,48 +2,51 @@
 
 ## 设计原则
 
-- **分类（categories）**：粗粒度，用于组织文章的大方向，每篇文章只有一个分类
+- **分类（categories）**：粗粒度，用于组织文章的大方向，每篇文章只归一个分类
 - **标签（tags）**：细粒度，用于标记文章涉及的具体技术点，每篇文章可以有多个标签
 
 ## 分类体系
 
 | 分类 | 说明 |
 |------|------|
-| `AI工程` | AI 工程化落地：Agent、RAG、Prompt Engineering、SDD |
+| `AI Engineering` | AI 工程化落地：SDD、Prompt Engineering、RAG、MCP |
 | `AIOps` | 智能运维：异常检测、根因分析、自动修复、可观测性 |
-| `Go后端` | Go 语言后端开发：微服务、高性能、并发、数据库 |
-| `工具链` | 开发工具、CI/CD、编辑器、CLI 工具 |
-| `论文笔记` | 论文阅读笔记、技术报告解读 |
-| `随笔` | 思考、总结、非技术内容 |
+| `Agent` | Agent 框架、多 Agent 协作、工具调用、Agent Skill |
+| `Golang` | Go 语言学习、标准库、并发模式、性能优化 |
+| `Backend` | 后端架构、微服务、数据库、缓存、消息队列 |
+| `Research` | 论文阅读、技术报告、学术研究笔记 |
+| `Interview` | 面试准备、八股文、手撕代码、系统设计 |
+| `English` | 英语学习、技术文档阅读、术语积累 |
+| `Life` | 随笔、思考、总结、非技术内容 |
 
 新增分类前，先确认现有分类无法归类，再添加。
 
 ## 标签体系
 
-标签按用途分为几类，可以自由组合：
+标签按用途分组，可以自由组合：
 
-### 技术栈标签
+### AI & Agent
 
-`Go` `Python` `Docker` `Kubernetes` `MySQL` `Redis` `gRPC` `Gin` `Hexo`
+`SDD` `Claude Code` `Agent Skill` `AGENTS.md` `RAG` `MCP` `AIOps` `LLM` `Prompt` `Embedding`
 
-### AI 相关标签
+### 后端 & 基础设施
 
-`Agent` `RAG` `Prompt` `SDD` `LLM` `Embedding` `Fine-tuning` `AIOps`
+`Go` `Redis` `MySQL` `Kubernetes` `Docker` `gRPC` `Gin` `微服务` `并发`
 
-### 概念标签
+### 工具 & 平台
 
-`微服务` `并发` `设计模式` `架构` `性能优化` `可观测性`
+`Hexo` `Git` `GitHub Actions` `Vim` `Cursor` `Notion`
 
-### 工具标签
+### 概念 & 方法
 
-`Claude Code` `Cursor` `Git` `GitHub Actions` `Vim`
+`设计模式` `架构` `性能优化` `可观测性` `系统设计`
 
 ## 命名规范
 
-1. 分类使用**中文**，简洁明确
-2. 标签优先使用**英文**，专有名词保持原样（如 `Go`、`RAG`、`LLM`）
-3. 多单词标签使用**驼峰**或**空格**分隔，保持一致
-4. 不使用过长的标签名（不超过 4 个字/词）
+1. 分类使用**英文**，简洁明确，首字母大写
+2. 标签优先使用**英文**，专有名词保持原样（如 `Go`、`RAG`、`MCP`）
+3. 多单词标签使用**空格**分隔（如 `Claude Code`、`Agent Skill`）
+4. 不使用过长的标签名（不超过 3 个单词）
 
 ## 示例
 
@@ -54,10 +57,9 @@ date: 2026-05-23 10:00:00
 tags:
   - Go
   - RAG
-  - 检索
-  - 微服务
+  - MCP
 categories:
-  - Go后端
+  - Backend
 description: 基于 Go 实现的 RAG 检索服务，支持向量检索和混合检索。
 toc: true
 ---
@@ -70,10 +72,24 @@ date: 2026-05-20 10:00:00
 tags:
   - Agent
   - LLM
-  - 论文笔记
+  - SDD
 categories:
-  - 论文笔记
+  - Research
 description: ReAct 论文解读，理解推理与行动的结合方式。
+toc: true
+---
+```
+
+```markdown
+---
+title: Go 并发面试题整理
+date: 2026-05-18 10:00:00
+tags:
+  - Go
+  - 并发
+categories:
+  - Interview
+description: Go 并发常见面试题和手撕代码练习。
 toc: true
 ---
 ```

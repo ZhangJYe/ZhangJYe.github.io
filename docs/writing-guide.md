@@ -80,7 +80,9 @@ npx hexo server --draft
 
 - 每篇文章归属**一个分类**
 - 每篇文章可以有**多个标签**
-- 分类和标签的命名规范见 [category-and-tag.md](./category-and-tag.md)
+- 分类使用英文：`AI Engineering`、`AIOps`、`Agent`、`Golang`、`Backend`、`Research`、`Interview`、`English`、`Life`
+- 标签围绕具体技术点：`SDD`、`Claude Code`、`Agent Skill`、`RAG`、`MCP`、`Go`、`Redis`、`MySQL`、`Kubernetes`、`Hexo` 等
+- 完整规范见 [category-and-tag.md](./category-and-tag.md)
 
 ## 发布流程
 

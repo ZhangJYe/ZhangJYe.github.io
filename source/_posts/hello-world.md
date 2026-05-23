@@ -5,7 +5,7 @@ tags:
   - Notes
   - Blog
 categories:
-  - 随笔
+  - Life
 description: 介绍这个笔记站的用途、技术栈和内容规划。
 toc: false
 ---
