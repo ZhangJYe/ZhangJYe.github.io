@@ -12,7 +12,7 @@ language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
-url: https://zhangjinye.github.io
+url: https://ZhangJYe.github.io
 root: /
 permalink: posts/:title/
 permalink_defaults:
