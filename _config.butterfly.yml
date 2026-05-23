@@ -67,15 +67,12 @@ aside:
     enable: true
     description: 武汉大学研究生｜AIOps + Agent｜Go Backend
     button:
-      enable: true
-      icon: fab fa-github
-      text: Follow Me
-      link: https://github.com/ZhangJYe
+      enable: false
   card_announcement:
     enable: true
     content: >
-      这里记录我在 AIOps、Agent、Go 后端、RAG 和 AI Coding 方向的学习笔记与工程实践。
-      文章以技术总结和论文阅读为主，不定期更新。
+      记录 AIOps、Agent、Go 后端、RAG 和 AI Coding 方向的学习笔记与工程实践。
+      以技术总结和论文阅读为主，不定期更新。
   card_recent_post:
     enable: true
     limit: 5
@@ -94,12 +91,7 @@ aside:
     order: 1
     sort_order:
   card_archives:
-    enable: true
-    type: monthly
-    format: MMMM YYYY
-    order: -1
-    limit: 8
-    sort_order:
+    enable: false
 
 # ---------------------
 # Table of Contents
@@ -201,18 +193,13 @@ local_search:
   CDN:
 
 # ---------------------
-# Background effects (subtle)
-# ---------------------
-# Can add bubble/flock/click effects later if desired
-
-# ---------------------
 # Beautify / Effect
 # ---------------------
 beautify:
   enable: true
   field: post
   title-prefix-icon: "\f0c1"
-  title-prefix-icon-color: "#F47466"
+  title-prefix-icon-color: "#c0392b"
 
 # ---------------------
 # Busuanzi counter (visitor stats)
@@ -228,3 +215,14 @@ anchor:
   auto_update: false
   click:
     scroll_decode: true
+
+# ---------------------
+# Inject custom CSS & fonts
+# ---------------------
+inject:
+  head:
+    - <link rel="preconnect" href="https://fonts.googleapis.com">
+    - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    - <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+  custom_css:
+    - /css/custom.css
