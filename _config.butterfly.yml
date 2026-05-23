@@ -21,16 +21,10 @@ social:
 # Index (Homepage)
 # ---------------------
 index_layout: both
-index_img:
-  default: /images/cover/index.jpg
-  # Multi-cover random display:
-  # - /images/cover/index-1.jpg
-  # - /images/cover/index-2.jpg
 
-# Description shown on homepage under the cover
+# Typing effect on homepage
 description:
   enable: true
-  # Typing effect on homepage
   typed:
     - AIOps & Agent 研究
     - Go 后端开发
@@ -40,12 +34,7 @@ description:
 # ---------------------
 # Page layout
 # ---------------------
-# Disable top bar on index page
-disable_top_img: false
-
-# Default cover for pages without specified cover
-default_cover:
-  - /images/cover/default.jpg
+disable_top_img: true
 
 # ---------------------
 # Avatar
@@ -184,15 +173,14 @@ creative_commons:
   license: by-nc-sa
 
 # ---------------------
-# Cover
+# Cover (disabled — text-focused design)
 # ---------------------
 cover:
-  index_enable: true
-  aside_enable: true
-  archives_enable: true
+  index_enable: false
+  aside_enable: false
+  archives_enable: false
   position: both
   default_cover:
-    - /images/cover/default.jpg
 
 # ---------------------
 # Tag plugins

@@ -8,25 +8,21 @@
 |----------|------|----------|
 | `avatar.png` | 侧边栏头像 | 200x200px，正方形，PNG 格式 |
 | `favicon.png` | 网站图标（浏览器标签页） | 32x32px 或 16x16px，PNG 格式 |
-| `cover/index.jpg` | 首页封面大图 | 1920x800px，JPG 格式 |
-| `cover/default.jpg` | 文章默认封面 | 1920x800px，JPG 格式 |
 
-## 可选
+## 不再使用的资源
 
-| 文件路径 | 用途 | 建议尺寸 |
-|----------|------|----------|
-| `cover/index-1.jpg` | 首页封面随机图（第2张） | 1920x800px |
-| `cover/index-2.jpg` | 首页封面随机图（第3张） | 1920x800px |
+封面图功能已禁用，以下资源不再需要：
+- `cover/index.jpg` — 首页封面大图
+- `cover/default.jpg` — 文章默认封面
+- `cover/*.jpg` — 随机封面图
 
 ## 命名规范
 
 - 头像：`avatar.png`
-- 封面图：`cover/*.jpg`
-- 文章内图片：`posts/<文章名>/<图片名>.png`（需开启 post_asset_folder）
 - favicon：`favicon.png`
+- 文章内图片：`posts/<文章名>/<图片名>.png`（需开启 post_asset_folder）
 
 ## 注意事项
 
 - 所有图片使用相对路径，以 `/images/` 开头
 - 图片文件名使用小写英文和连字符，不要使用中文或空格
-- 封面图建议使用风景、抽象、科技感的图片
