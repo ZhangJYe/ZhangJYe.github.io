@@ -8,6 +8,7 @@ categories:
   - Life
 description: 介绍这个笔记站的用途、技术栈和内容规划。
 toc: false
+sticky: 100
 ---
 
 这个站用于记录我在 AIOps、Agent、Go 后端、RAG 和 AI Coding 方向的学习与实践。
