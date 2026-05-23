@@ -1,33 +1,67 @@
 # Butterfly Theme Configuration
 # Docs: https://butterfly.js.org/
 
-# Navigation menu
+# ---------------------
+# Navigation
+# ---------------------
 nav:
-  Home: /
-  Archives: /archives
-  Categories: /categories
-  Tags: /tags
-  About: /about
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  分类: /categories/ || fas fa-folder-open
+  标签: /tags/ || fas fa-tags
+  关于: /about/ || fas fa-user
 
-# Social links (placeholder)
+# ---------------------
+# Social Links
+# ---------------------
 social:
-  # fab fa-github: https://github.com/yourusername||Github
+  fab fa-github: https://github.com/ZhangJYe||Github
 
-# Code blocks
-highlight_theme: mac
-highlight_copy: true
-highlight_lang: true
-highlight_height_limit: 300
+# ---------------------
+# Index (Homepage)
+# ---------------------
+index_layout: both
+index_img:
+  default: /images/cover/index.jpg
+  # Multi-cover random display:
+  # - /images/cover/index-1.jpg
+  # - /images/cover/index-2.jpg
 
-# Read mode
-readmode: true
-
-# Dark mode
-darkmode:
+# Description shown on homepage under the cover
+description:
   enable: true
-  button: true
+  # Typing effect on homepage
+  typed:
+    - AIOps & Agent 研究
+    - Go 后端开发
+    - 智能运维 & AI Coding
+    - RAG 与工程化 Agent
 
+# ---------------------
+# Page layout
+# ---------------------
+# Disable top bar on index page
+disable_top_img: false
+
+# Default cover for pages without specified cover
+default_cover:
+  - /images/cover/default.jpg
+
+# ---------------------
+# Avatar
+# ---------------------
+avatar:
+  img: /images/avatar.png
+  effect: true
+
+# ---------------------
+# Site icon
+# ---------------------
+favicon: /images/favicon.png
+
+# ---------------------
 # Sidebar
+# ---------------------
 aside:
   enable: true
   hide: false
@@ -38,8 +72,65 @@ aside:
     archive: true
     tag: true
     category: true
+  card_author:
+    enable: true
+    description: 武汉大学研究生 | AIOps + Agent
+    button:
+      enable: true
+      icon: fab fa-github
+      text: Follow Me
+      link: https://github.com/ZhangJYe
+  card_announcement:
+    enable: true
+    content: 欢迎来到 Fire 的个人笔记站点，记录 AIOps、Agent、Go 后端等方向的学习与实践。
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+    sort_order:
+  card_categories:
+    enable: true
+    limit: 8
+    expand: none
+    sort_order:
+  card_tags:
+    enable: true
+    limit: 40
+    color: true
+    orderby: random
+    order: 1
+    sort_order:
+  card_archives:
+    enable: true
+    type: monthly
+    format: MMMM YYYY
+    order: -1
+    limit: 8
+    sort_order:
 
+# ---------------------
+# Table of Contents
+# ---------------------
+toc:
+  post: true
+  page: false
+  number: true
+  expand: false
+  style_simple: false
+  scroll_percent: true
+
+# ---------------------
+# Code blocks
+# ---------------------
+highlight_theme: mac
+highlight_copy: true
+highlight_lang: true
+highlight_height_limit: 300
+code_word_wrap: true
+
+# ---------------------
 # Article meta
+# ---------------------
 post_meta:
   page:
     date_type: created
@@ -54,7 +145,29 @@ post_meta:
     tags: true
     label: true
 
+# Article word count & reading time
+wordcount:
+  enable: true
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
+
+# ---------------------
+# Read mode
+# ---------------------
+readmode: true
+
+# ---------------------
+# Dark mode
+# ---------------------
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: false
+
+# ---------------------
 # Footer
+# ---------------------
 footer:
   owner:
     enable: true
@@ -62,28 +175,64 @@ footer:
   custom_text:
   copyright: true
 
-# Creative Commons license
+# ---------------------
+# Creative Commons
+# ---------------------
 creative_commons:
   post: true
   language: zh-CN
   license: by-nc-sa
 
-# Page default cover (optional)
+# ---------------------
+# Cover
+# ---------------------
 cover:
   index_enable: true
   aside_enable: true
   archives_enable: true
   position: both
   default_cover:
+    - /images/cover/default.jpg
 
-# Avatar (optional)
-avatar:
-  img: /images/avatar.png
-  effect: false
-
-# Site icon
-favicon: /images/favicon.png
-
-# Disable tag plugin (use standard Markdown)
+# ---------------------
+# Tag plugins
+# ---------------------
 tag_plugins:
   enable: true
+
+# ---------------------
+# Search
+# ---------------------
+local_search:
+  enable: true
+  preload: false
+  CDN:
+
+# ---------------------
+# Background effects (subtle)
+# ---------------------
+# Can add bubble/flock/click effects later if desired
+
+# ---------------------
+# Beautify / Effect
+# ---------------------
+beautify:
+  enable: true
+  field: post
+  title-prefix-icon: "\f0c1"
+  title-prefix-icon-color: "#F47466"
+
+# ---------------------
+# Busuanzi counter (visitor stats)
+# ---------------------
+busuanzi_site_uv: true
+busuanzi_site_pv: true
+busuanzi_page_pv: true
+
+# ---------------------
+# Anchor link
+# ---------------------
+anchor:
+  auto_update: false
+  click:
+    scroll_decode: true

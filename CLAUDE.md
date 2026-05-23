@@ -116,6 +116,31 @@ cat > CLAUDE.md <<'EOF'
 4. 不要删除用户已有内容。
 5. 不要修改全局 Node/npm 配置。
 6. 不要执行危险删除命令。
-EOF
 
-claude
+## Git 工作流
+
+1. 每次任务完成并通过 `npm run build` 后，可以自动创建本地 Git commit。
+2. 自动 commit 前必须先执行 `git status`，确认不会提交：
+   - node_modules/
+   - public/
+   - .env
+   - db.json
+   - 任何真实密钥或隐私文件
+3. commit message 必须使用规范格式：
+   - feat: 新功能
+   - fix: 修复问题
+   - docs: 文档或文章
+   - style: 样式或主题调整
+   - chore: 配置或工程杂项
+   - refactor: 重构
+4. 每次 commit 前必须输出本次将提交的文件列表。
+5. 允许自动执行：
+   - git status
+   - git add .
+   - git commit -m "..."
+6. 禁止自动执行：
+   - git push
+   - git push --force
+   - git reset --hard
+   - git clean -fd
+7. 是否 push 必须由用户手动决定。
