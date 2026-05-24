@@ -18,22 +18,20 @@ function loadConfig() {
 
   const token = process.env.NOTION_TOKEN;
   const dataSourceId = process.env.NOTION_DATA_SOURCE_ID;
-  const databaseId = process.env.NOTION_DATABASE_ID;
 
   if (!token) {
     console.error('[ERROR] NOTION_TOKEN is required in .env');
     process.exit(1);
   }
 
-  if (!dataSourceId && !databaseId) {
-    console.error('[ERROR] NOTION_DATA_SOURCE_ID or NOTION_DATABASE_ID is required in .env');
+  if (!dataSourceId) {
+    console.error('[ERROR] NOTION_DATA_SOURCE_ID is required in .env');
     process.exit(1);
   }
 
   return {
     token,
-    dataSourceId: dataSourceId || null,
-    databaseId: databaseId || null,
+    dataSourceId,
     postsDir: path.join(__dirname, '../../source/_posts'),
   };
 }
@@ -66,30 +64,11 @@ async function queryDataSourceWithPagination(client, config) {
   let cursor = undefined;
 
   while (true) {
-    let response;
-
-    if (config.dataSourceId) {
-      try {
-        response = await client.dataSources.query({
-          data_source_id: config.dataSourceId,
-          filter,
-          start_cursor: cursor,
-        });
-      } catch (err) {
-        if (err.code === 'validation_error' || err.message?.includes('dataSources')) {
-          console.log('[INFO] dataSources.query not available, falling back to databases.query');
-          config.dataSourceId = null;
-          continue;
-        }
-        throw err;
-      }
-    } else {
-      response = await client.databases.query({
-        database_id: config.databaseId,
-        filter,
-        start_cursor: cursor,
-      });
-    }
+    const response = await client.dataSources.query({
+      data_source_id: config.dataSourceId,
+      filter,
+      start_cursor: cursor,
+    });
 
     allResults.push(...response.results);
 
