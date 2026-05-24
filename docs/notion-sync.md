@@ -5,7 +5,7 @@
 从 Notion Database 单向同步已发布文章到 Hexo Markdown。
 
 安全原则：
-- 只同步 Status=已发布 且 Sync=true 的页面
+- 只同步 Status=Published（或 已发布）且 Sync=true 的页面
 - 不覆盖已有文件
 - 不删除本地文章
 - 不做双向同步
@@ -18,13 +18,14 @@
 cp .env.example .env
 ```
 
-编辑 `.env`，填入你的 Notion Integration Token：
+编辑 `.env`，填入你的 Notion Integration Token 和目标 ID：
 
 ```
 NOTION_TOKEN=ntn_xxxxxxxxxxxxxxxxxxxxxxx
+NOTION_DATA_SOURCE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-Data Source ID 和 Database ID 已预填，如果需要同步其他 Database，修改对应值。
+推荐填写 `NOTION_DATA_SOURCE_ID`。如果只拿到了 Database ID，也可以填写 `NOTION_DATABASE_ID`，脚本会尝试读取该 Database 下的第一个 Data Source。
 
 ### 2. 安装依赖
 
@@ -42,16 +43,18 @@ npm run sync:notion
 
 | 字段名 | 类型 | 必填 | 映射到 |
 |--------|------|------|--------|
-| 文章标题 | Title | 是 | `title` |
-| 文件名 | Rich Text | 是 | 文件名 `{slug}.md` |
-| 发布日期 | Date | 是 | `date` |
-| 标签 | Multi-select | 是 | `tags` |
-| 分类 | Select | 是 | `categories` |
-| 摘要 | Rich Text | 建议 | `description` |
-| 状态 | Select | 是 | 过滤条件（已发布） |
-| 是否同步 | Checkbox | 是 | 过滤条件（true） |
+| Title | Title | 是 | `title` |
+| Slug | Rich Text | 是 | 文件名 `{slug}.md` |
+| Date | Date | 是 | `date` |
+| Tags | Multi-select | 是 | `tags` |
+| Categories | Select | 是 | `categories` |
+| Description | Rich Text | 建议 | `description` |
+| Status | Select 或 Status | 是 | 过滤条件（Published） |
+| Sync | Checkbox | 是 | 过滤条件（true） |
 | Toc | Checkbox | 否 | `toc`，默认 true |
 | Sticky | Number | 否 | `sticky`，置顶权重 |
+
+兼容旧中文字段名：`文章标题`、`文件名`、`发布日期`、`标签`、`分类`、`摘要`、`状态`、`是否同步`。
 
 脚本自动写入 `notion_id` 字段到 Front Matter，用于后续增量同步定位来源。
 
@@ -60,14 +63,20 @@ npm run sync:notion
 ### 过滤条件
 
 只同步满足以下条件的页面：
-- 状态 = 已发布
-- 是否同步 = true
+- Status = Published（默认同时兼容 已发布）
+- Sync = true
+
+如果你的发布状态不是 `Published`，可以在 `.env` 中配置：
+
+```
+NOTION_STATUS_VALUES=Published,已发布
+```
 
 ### 文件命名
 
-- 输出路径：`source/_posts/{文件名}.md`
-- 文件名只能包含小写英文、数字、连字符
-- 文件名为空或非法 → 跳过并打印建议
+- 输出路径：`source/_posts/{Slug}.md`
+- Slug 只能包含小写英文、数字、连字符
+- Slug 为空或非法 → 跳过并打印建议
 - 文件已存在 → 跳过，不覆盖
 
 ### Rich Text 支持
@@ -109,6 +118,20 @@ npm run sync:notion
 第一版不下载图片，保留 Notion URL。同步报告会输出图片过期警告。
 
 后续版本将下载到 `source/images/notion/{slug}/`。
+
+## 常见错误
+
+### Could not find database / object_not_found
+
+这个错误通常不是 Markdown 转换问题，而是 Notion API 无法访问你填入的 ID。
+
+检查顺序：
+
+1. 打开原始 Full-page Database，不要打开 linked database view。
+2. 右上角 `...` → `Connections` → 添加你的 Integration。
+3. 确认 `.env` 中的 `NOTION_DATA_SOURCE_ID` 是 Data Source ID；如果你只有 Database ID，填到 `NOTION_DATABASE_ID`。
+4. 如果复制的是 Notion URL，保留完整 URL 也可以，脚本会自动提取 ID。
+5. linked data source 需要授权原始 Database，而不是只授权当前页面。
 
 ## 输出示例
 
