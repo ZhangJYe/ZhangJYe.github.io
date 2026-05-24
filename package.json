@@ -6,12 +6,15 @@
     "dev": "hexo clean && hexo server",
     "build": "hexo clean && hexo generate",
     "clean": "hexo clean",
-    "new": "hexo new"
+    "new": "hexo new",
+    "sync:notion": "node scripts/notion/sync-notion.js"
   },
   "hexo": {
     "version": "8.1.2"
   },
   "dependencies": {
+    "@notionhq/client": "^5.22.0",
+    "dotenv": "^17.4.2",
     "hexo": "^8.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",

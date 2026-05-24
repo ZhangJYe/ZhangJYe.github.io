@@ -2,67 +2,137 @@
 
 ## 概述
 
-本项目预留了从 Notion 同步内容到 Hexo 的能力。脚本骨架在 `scripts/notion/sync-notion.js`。
+从 Notion Database 单向同步已发布文章到 Hexo Markdown。
 
-## 当前状态
+安全原则：
+- 只同步 Status=已发布 且 Sync=true 的页面
+- 不覆盖已有文件
+- 不删除本地文章
+- 不做双向同步
 
-脚本为骨架代码，不调用真实 API。需要后续补充：
+## 快速开始
 
-1. 安装依赖：`npm install @notionhq/client dotenv`
-2. 配置 `.env` 文件
-3. 实现 `fetchNotionPages()` 函数
-4. 实现 `convertToHexoMarkdown()` 函数
-
-## 配置步骤
-
-### 1. 创建 Notion Integration
-
-1. 访问 https://www.notion.so/my-integrations
-2. 创建新的 Integration
-3. 复制 Internal Integration Token
-
-### 2. 配置环境变量
+### 1. 配置 .env
 
 ```bash
 cp .env.example .env
 ```
 
-编辑 `.env`：
+编辑 `.env`，填入你的 Notion Integration Token：
 
 ```
 NOTION_TOKEN=ntn_xxxxxxxxxxxxxxxxxxxxxxx
-NOTION_DATABASE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-NOTION_PAGE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-### 3. 授权 Integration 访问 Database
+Data Source ID 和 Database ID 已预填，如果需要同步其他 Database，修改对应值。
 
-在 Notion 中，打开目标 Database，点击右上角 `...` → `Connections` → 添加你的 Integration。
-
-### 4. 安装依赖
+### 2. 安装依赖
 
 ```bash
 npm install @notionhq/client dotenv
 ```
 
-### 5. 取消脚本中的注释
-
-在 `scripts/notion/sync-notion.js` 中：
-
-- 取消 `require('dotenv').config()` 的注释
-- 实现 `initNotionClient()` 函数
-- 实现 `fetchNotionPages()` 函数
-- 实现 `convertToHexoMarkdown()` 函数
-
-## 运行同步
+### 3. 运行同步
 
 ```bash
-node scripts/notion/sync-notion.js
+npm run sync:notion
 ```
 
-## 注意事项
+## Notion Database 字段要求
 
-- 已存在的同名文章不会被覆盖
-- 同步后的文章在 `source/_posts/` 中，可以手动编辑
-- 建议同步前先 `npm run clean` 清理缓存
-- 不要把 `.env` 文件提交到版本控制
+| 字段名 | 类型 | 必填 | 映射到 |
+|--------|------|------|--------|
+| 文章标题 | Title | 是 | `title` |
+| 文件名 | Rich Text | 是 | 文件名 `{slug}.md` |
+| 发布日期 | Date | 是 | `date` |
+| 标签 | Multi-select | 是 | `tags` |
+| 分类 | Select | 是 | `categories` |
+| 摘要 | Rich Text | 建议 | `description` |
+| 状态 | Select | 是 | 过滤条件（已发布） |
+| 是否同步 | Checkbox | 是 | 过滤条件（true） |
+| Toc | Checkbox | 否 | `toc`，默认 true |
+| Sticky | Number | 否 | `sticky`，置顶权重 |
+
+脚本自动写入 `notion_id` 字段到 Front Matter，用于后续增量同步定位来源。
+
+## 同步规则
+
+### 过滤条件
+
+只同步满足以下条件的页面：
+- 状态 = 已发布
+- 是否同步 = true
+
+### 文件命名
+
+- 输出路径：`source/_posts/{文件名}.md`
+- 文件名只能包含小写英文、数字、连字符
+- 文件名为空或非法 → 跳过并打印建议
+- 文件已存在 → 跳过，不覆盖
+
+### Rich Text 支持
+
+第一版支持：
+- **bold** → `**text**`
+- *italic* → `*text*`
+- `code` → `` `text` ``
+- ~~strikethrough~~ → `~~text~~`
+- [link](url) → `[text](url)`
+
+### Block 支持
+
+第一版支持 15 种 Block 类型：
+
+| Block 类型 | Markdown 输出 |
+|------------|---------------|
+| paragraph | 段落文本 |
+| heading_1/2/3 | `#` / `##` / `###` |
+| bulleted_list_item | `- text` |
+| numbered_list_item | `1. text` |
+| to_do | `- [ ] text` / `- [x] text` |
+| toggle | `<details>` 展开 |
+| code | ` ```lang ... ``` ` |
+| quote | `> text` |
+| divider | `---` |
+| bookmark | `[url](url)` |
+| image | `![alt](notion-url)` |
+| callout | `> 💡 text` |
+| table | Markdown 表格 |
+| column_list | 递归展开 |
+| column | 递归展开 |
+| synced_block | 递归展开 |
+
+不支持的 block 输出：`<!-- [SKIP] unsupported block: {type} -->`
+
+### 图片处理
+
+第一版不下载图片，保留 Notion URL。同步报告会输出图片过期警告。
+
+后续版本将下载到 `source/images/notion/{slug}/`。
+
+## 输出示例
+
+```
+[sync] Querying Notion...
+[sync] Found 3 published page(s) with Sync=true
+  [OK] sdd-agent-notes — created
+  [SKIP] hello-world — file already exists
+  [SKIP] "Draft Article" — no slug
+         suggestion: draft-article
+────────────────────────────────
+  Sync Report
+────────────────────────────────
+  Created:  1
+  Skipped:  1 (already exists)
+  Invalid:  1 (bad or missing slug)
+  Errors:   0
+────────────────────────────────
+```
+
+## 后续扩展
+
+- `--force` 覆盖已有文件
+- `--dry-run` 只预览不写入
+- 增量同步（基于 `.sync-state.json`）
+- 图片自动下载
+- 自动 git commit
